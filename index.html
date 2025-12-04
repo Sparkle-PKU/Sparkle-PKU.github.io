@@ -11,10 +11,10 @@
     :root {
       --bg: #f5f5f5;
       --fg: #111;
-      --card-bg: #f4f9ff;           /* 主体卡片改成浅蓝色 */
+      --card-bg: #f4f9ff;           /* 主体/侧边卡片浅蓝色 */
       --border-soft: #e5e5e5;
       --link: #0070f3;
-      --nav-bg: #ffffff;
+      --nav-bg: #f7f7f7;            /* 顶部偏灰白 */
       --nav-border: #e2e2e2;
       --nav-text: #333;
       --nav-active: #111;
@@ -44,7 +44,7 @@
     }
 
     .masthead {
-      background: var(--nav-bg);      /* 顶部菜单恢复为白色背景 */
+      background: var(--nav-bg);      /* 顶部白色偏灰 */
       border-bottom: 1px solid var(--nav-border);
       box-shadow: 0 2px 4px rgba(0,0,0,0.03);
       position: sticky;
@@ -90,18 +90,18 @@
       color: var(--nav-text);
       text-decoration: none;
       white-space: nowrap;
-      background: transparent;      /* “正常无色” */
+      background: transparent;      /* 看起来“无色” */
     }
 
     .nav-links a:hover {
-      background: #f3f3f3;
-      border-color: #e0e0e0;
+      background: #f0f0f0;
+      border-color: #dddddd;
     }
 
     .nav-links a.active {
-      background: #f3f3f3;          /* 变成浅灰高亮，不再是黑色块 */
+      background: #ebebeb;          /* 浅灰高亮 */
       color: var(--nav-active);
-      border-color: #e0e0e0;
+      border-color: #d8d8d8;
     }
 
     #main {
@@ -121,7 +121,7 @@
     }
 
     .sidebar-card {
-      background: var(--card-bg);    /* 侧边栏卡片也用浅蓝 */
+      background: var(--card-bg);    /* 浅蓝 */
       border-radius: 16px;
       padding: 16px 14px 14px;
       border: 1px solid rgba(0,0,0,0.04);
@@ -529,59 +529,84 @@
                 I also implemented an SGD optimizer and used <code>pybind11</code> to expose CUDA/C++
                 kernels to Python, enabling parallelized training and evaluation.
               </p>
+              <p>
+                <strong>Code:</strong>
+                <a href="https://github.com/Sparkle-PKU/Mytorch" target="_blank" rel="noreferrer">
+                  https://github.com/Sparkle-PKU/Mytorch
+                </a>
+              </p>
             </div>
           </div>
 
-          <!-- Notes -->
+                    <!-- Notes -->
           <div class="page-view" data-page="notes">
             <h2>Notes</h2>
             <p>
-              I keep lightweight notes not only for my own learning, but also to help classmates:
-              they include <strong>extracurricular notes</strong> on topics such as diffusion models, RL,
-              and large language models, as well as <strong>course materials and summaries</strong> that
-              may be useful for students taking related courses.
+              I keep lightweight notes and materials that include both
+              <strong>extracurricular notes (课外笔记)</strong> and
+              <strong>course-related materials (课程资料)</strong>. They are not only for recording my own learning,
+              but also intended to <strong>help classmates study</strong> and review key concepts.
             </p>
             <p>
-              Some of these materials are (or will be) organized and shared on my GitHub:
+              Many of these notes and course materials are (or will be) organized and shared on GitHub:
+              <br>
+              <strong>📚 Notes & Course Materials Repository List:</strong>
               <a href="https://github.com/Sparkle-PKU?tab=repositories" target="_blank" rel="noreferrer">
                 https://github.com/Sparkle-PKU?tab=repositories
-              </a>.
+              </a>
             </p>
 
+            <h3>Course & Note Repositories (One Per Line)</h3>
             <ul class="notes-list">
               <li>
-                <div class="notes-title">
-                  <a href="#" target="_blank" rel="noreferrer">Notes on Diffusion Models and CTMC Formulations</a>
-                </div>
-                <div class="notes-meta">
-                  2025 · diffusion models, discrete spaces
-                  <span class="notes-tag">generative models</span>
-                </div>
+                <a href="https://github.com/Sparkle-PKU/Computer-Networks-Honor-Track"
+                   target="_blank" rel="noreferrer">
+                  Computer-Networks-Honor-Track
+                </a>
               </li>
               <li>
-                <div class="notes-title">
-                  <a href="#" target="_blank" rel="noreferrer">Reinforcement Learning Basics from "RL: An Introduction"</a>
-                </div>
-                <div class="notes-meta">
-                  2025 · value-based methods, policy gradients
-                  <span class="notes-tag">RL</span>
-                </div>
+                <a href="https://github.com/Sparkle-PKU/Numerical-Methods"
+                   target="_blank" rel="noreferrer">
+                  Numerical-Methods
+                </a>
               </li>
               <li>
-                <div class="notes-title">
-                  <a href="#" target="_blank" rel="noreferrer">Reading Notes on LLM Training and Alignment</a>
-                </div>
-                <div class="notes-meta">
-                  2025 · pretraining, finetuning, RLHF
-                  <span class="notes-tag">LLM</span>
-                </div>
+                <a href="https://github.com/Sparkle-PKU/Multimodal-Learning"
+                   target="_blank" rel="noreferrer">
+                  Multimodal-Learning
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Sparkle-PKU/Practice-of-Programming-in-c-and-cpp"
+                   target="_blank" rel="noreferrer">
+                  Practice-of-Programming-in-c-and-cpp
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Sparkle-PKU/Continuous-Time-Diffusion-Processes-in-Machine-Learning-Theory"
+                   target="_blank" rel="noreferrer">
+                  Continuous-Time-Diffusion-Processes-in-Machine-Learning-Theory
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Sparkle-PKU/Mytorch"
+                   target="_blank" rel="noreferrer">
+                  Mytorch
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Sparkle-PKU/Reinforcement-Learning-An-Introduction-Notes"
+                   target="_blank" rel="noreferrer">
+                  Reinforcement-Learning-An-Introduction-Notes
+                </a>
               </li>
             </ul>
 
             <p style="font-size: 12px; color:#777; margin-top:10px;">
-              (These are placeholders for now. I will gradually upload and organize my notes and course-related materials.)
+              (I will gradually upload and organize more notes and course-related materials in these repositories.)
             </p>
           </div>
+
 
           <!-- Awards & Misc -->
           <div class="page-view" data-page="misc">
