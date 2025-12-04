@@ -43,7 +43,6 @@
       text-decoration: underline;
     }
 
-    /* 顶部导航，模仿 AcademicPages 的 masthead */
     .masthead {
       background: var(--nav-bg);
       border-bottom: 1px solid var(--nav-border);
@@ -103,7 +102,6 @@
       color: #fff;
     }
 
-    /* 主区域：左边 sidebar + 右边 page */
     #main {
       max-width: 1080px;
       margin: 0 auto;
@@ -194,7 +192,6 @@
       background: #fafafa;
     }
 
-    /* 右边内容“页面容器” */
     .page {
       flex: 1 1 auto;
       min-width: 0;
@@ -312,7 +309,6 @@
       margin-left: 6px;
     }
 
-    /* “点击后才能看下一部分”：页面切换 + 上一步/下一步 */
     .page-view {
       display: none;
     }
@@ -374,7 +370,6 @@
   </style>
 </head>
 <body>
-  <!-- 顶部导航（只用前端切换，不需要 Jekyll） -->
   <div class="masthead">
     <div class="masthead__inner-wrap">
       <div class="masthead__menu">
@@ -394,12 +389,11 @@
   </div>
 
   <div id="main" role="main">
-    <!-- 左侧侧栏，参考 Alan 的布局 -->
     <div class="sidebar sticky">
       <div class="sidebar-card" itemscope itemtype="http://schema.org/Person">
         <div class="author__avatar">
           <!-- 换成你自己的头像链接 -->
-          <img src="https://avatars.githubusercontent.com/u/0?v=4" alt="Bairui Li">
+          <img src="https://github.com/Sparkle-PKU/Sparkle-PKU.github.io/blob/main/avatar.jpeg" alt="Bairui Li">
         </div>
         <div class="author__content">
           <h3 class="author__name">Bairui Li</h3>
@@ -431,7 +425,6 @@
       </div>
     </div>
 
-    <!-- 右侧内容：一次只显示一个“页面” -->
     <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
       <div class="page__inner-wrap">
         <header>
@@ -465,8 +458,7 @@
               <div class="pill">Diffusion / Generative Models</div>
               <div class="pill">Large Language Models</div>
               <div class="pill">Reinforcement Learning</div>
-              <div class="pill">Embodied Intelligence</div>
-              <div class="pill">Computer Vision</div>
+              <div class="pill">Embodied AI</div>
             </div>
 
             <h2>Research Interests</h2>
@@ -482,7 +474,7 @@
                 RL from human feedback, and combining RL with generative models.
               </li>
               <li>
-                <strong>Embodied intelligence</strong> — language-conditioned control, agents that can
+                <strong>Embodied AI</strong> — language-conditioned control, agents that can
                 act in the physical world or simulators, and connecting perception, reasoning,
                 and action.
               </li>
@@ -530,24 +522,6 @@
               <p>
                 I also implemented an SGD optimizer and used <code>pybind11</code> to expose CUDA/C++
                 kernels to Python, enabling parallelized training and evaluation.
-              </p>
-            </div>
-
-            <div>
-              <div class="item-header">
-                <span class="item-title">Computer Vision Labs and 3D Understanding</span>
-                <span class="item-meta">Course labs · Introduction to Computer Vision, 2025</span>
-              </div>
-              <p>
-                Implemented classic feature and edge detection pipelines including Harris Corner
-                Detector and Canny Edge Detector. Built a CNN from scratch with NumPy
-                implementations of convolution, batch normalization, and cross-entropy loss,
-                and trained it on CIFAR-10.
-              </p>
-              <p>
-                For 3D understanding, I sampled point clouds with uniform and Farthest Point Sampling,
-                performed camera calibration via linear algebra formulations, and experimented with
-                PointNet, Mask R-CNN, and RNNs for 3D perception and sequence modeling tasks.
               </p>
             </div>
           </div>
