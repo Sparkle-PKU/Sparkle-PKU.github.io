@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8">
   <title>Bairui Li - Personal Homepage</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Personal homepage of Bairui Li, undergraduate student at Peking University interested in generative models, large language models, reinforcement learning, and embodied AI." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Personal homepage of Bairui Li, undergraduate student at Peking University interested in generative models, large language models, reinforcement learning, and embodied AI.">
+
   <style>
     :root {
       --bg: #f5f5f5;
@@ -12,6 +14,10 @@
       --card-bg: #ffffff;
       --border-soft: #e5e5e5;
       --link: #0070f3;
+      --nav-bg: #ffffff;
+      --nav-border: #e2e2e2;
+      --nav-text: #333;
+      --nav-active: #111;
     }
 
     * {
@@ -19,12 +25,12 @@
     }
 
     body {
+      margin: 0;
+      padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
                    "Segoe UI", Roboto, "Helvetica Neue", Arial,
                    "PingFang SC", "Microsoft YaHei", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
+      background: var(--bg);
       color: var(--fg);
     }
 
@@ -37,28 +43,92 @@
       text-decoration: underline;
     }
 
-    .page {
+    /* 顶部导航，模仿 AcademicPages 的 masthead */
+    .masthead {
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .masthead__inner-wrap {
       max-width: 1080px;
       margin: 0 auto;
-      padding: 24px 16px 40px;
+      padding: 8px 16px;
+    }
+
+    .masthead__menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .site-title {
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--nav-text);
+    }
+
+    .site-subtitle {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--nav-text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      background: #f3f3f3;
+      border-color: #e0e0e0;
+    }
+
+    .nav-links a.active {
+      background: var(--nav-active);
+      color: #fff;
+    }
+
+    /* 主区域：左边 sidebar + 右边 page */
+    #main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px 16px 30px;
       display: flex;
       gap: 24px;
       align-items: flex-start;
     }
 
-    /* 左侧侧栏 */
     .sidebar {
       flex: 0 0 260px;
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px 18px 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,0,0,0.04);
       position: sticky;
-      top: 16px;
+      top: 70px;
+      align-self: flex-start;
     }
 
-    .avatar {
+    .sidebar-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px 14px 14px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .author__avatar {
       width: 140px;
       height: 140px;
       border-radius: 50%;
@@ -68,52 +138,48 @@
       background: #ddd;
     }
 
-    .avatar img {
+    .author__avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .sidebar-name {
+    .author__name {
       text-align: center;
-      font-size: 22px;
-      font-weight: 600;
-      margin-top: 4px;
+      font-size: 20px;
+      margin: 2px 0;
     }
 
-    .sidebar-title {
+    .author__bio {
       text-align: center;
       font-size: 13px;
-      color: #666;
-      margin-top: 2px;
-      line-height: 1.4;
+      color: #777;
+      margin: 0 0 8px;
     }
 
-    .sidebar-meta {
-      margin-top: 10px;
+    .author__info {
       font-size: 13px;
       color: #444;
+      margin-bottom: 8px;
     }
 
-    .sidebar-meta div {
+    .author__info div {
       margin-bottom: 4px;
     }
 
-    .sidebar-meta span.icon {
-      margin-right: 4px;
-    }
-
-    .sidebar-links {
-      margin-top: 10px;
+    .author__links {
+      list-style: none;
+      padding-left: 0;
+      margin: 8px 0 0;
       font-size: 13px;
     }
 
-    .sidebar-links div {
+    .author__links li {
       margin-bottom: 4px;
     }
 
-    .sidebar-tags {
+    .author__tags {
       margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
@@ -128,87 +194,57 @@
       background: #fafafa;
     }
 
-    /* 右侧主内容区域 */
-    .content-wrapper {
+    /* 右边内容“页面容器” */
+    .page {
       flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
       min-width: 0;
     }
 
-    /* 顶部站点标题 + 导航 */
-    .site-header {
-      background: #fff;
-      border-radius: 16px;
-      padding: 12px 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,0,0,0.04);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .site-title {
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    .site-subtitle {
-      font-size: 12px;
-      color: #666;
-    }
-
-    .nav {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .nav a {
-      font-size: 13px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      color: #444;
-      border: 1px solid transparent;
-      text-decoration: none;
-    }
-
-    .nav a:hover {
-      border-color: rgba(0,0,0,0.08);
-      background: #f5f5f5;
-    }
-
-    .nav a.active {
-      background: #111;
-      color: #fff;
-    }
-
-    /* “页面”容器：点击导航时切换显示 */
-    .page-view {
-      display: none;
+    .page__inner-wrap {
       background: var(--card-bg);
       border-radius: 16px;
-      padding: 18px 18px 16px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      padding: 18px 20px 18px;
       border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      min-height: 260px;
     }
 
-    .page-view.active {
-      display: block;
+    .page__title {
+      margin: 0 0 4px;
+      font-size: 24px;
     }
 
-    .page-view h2 {
-      margin-top: 0;
+    .page__subtitle {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .page__content p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 6px 0;
+    }
+
+    .page__content ul {
+      font-size: 14px;
+      margin: 6px 0 6px;
+      padding-left: 20px;
+    }
+
+    .page__content li {
+      margin-bottom: 4px;
+    }
+
+    h2 {
       font-size: 18px;
+      margin-top: 10px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    .page-view h2::before {
+    h2::before {
       content: "";
       width: 4px;
       height: 16px;
@@ -217,27 +253,11 @@
       display: inline-block;
     }
 
-    p {
-      margin: 6px 0;
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    ul {
-      margin: 8px 0 6px;
-      padding-left: 20px;
-      font-size: 14px;
-    }
-
-    li {
-      margin-bottom: 4px;
-    }
-
     .item-header {
       display: flex;
       flex-wrap: wrap;
-      align-items: baseline;
       gap: 6px;
+      align-items: baseline;
       margin-bottom: 2px;
     }
 
@@ -254,7 +274,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin: 6px 0 6px;
+      margin: 6px 0 8px;
     }
 
     .pill {
@@ -268,6 +288,7 @@
     .notes-list {
       list-style: none;
       padding-left: 0;
+      font-size: 14px;
     }
 
     .notes-list li {
@@ -291,17 +312,53 @@
       margin-left: 6px;
     }
 
-    footer {
-      max-width: 1080px;
-      margin: 0 auto;
-      text-align: center;
-      color: #888;
-      font-size: 12px;
-      padding: 6px 0 24px;
+    /* “点击后才能看下一部分”：页面切换 + 上一步/下一步 */
+    .page-view {
+      display: none;
     }
 
-    @media (max-width: 800px) {
-      .page {
+    .page-view.active {
+      display: block;
+    }
+
+    .pager {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    .pager button {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      padding: 5px 12px;
+      background: #fafafa;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .pager button:hover:not(:disabled) {
+      background: #f0f0f0;
+    }
+
+    .pager button:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    footer.page__footer {
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+      padding: 10px 0 20px;
+      border-top: 1px solid #e4e4e4;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 860px) {
+      #main {
         flex-direction: column;
       }
       .sidebar {
@@ -309,66 +366,23 @@
       }
     }
 
-    @media (max-width: 640px) {
-      .site-header {
-        align-items: flex-start;
-      }
-      .site-title {
-        font-size: 18px;
-      }
-      .nav {
+    @media (max-width: 520px) {
+      .nav-links {
         width: 100%;
-        justify-content: flex-start;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <!-- 左侧侧栏 -->
-    <aside class="sidebar">
-      <div class="avatar">
-        <!-- 换成你真实头像链接 -->
-        <img src="https://avatars.githubusercontent.com/u/0?v=4" alt="avatar">
-      </div>
-      <div class="sidebar-name">Bairui Li</div>
-      <div class="sidebar-title">
-        Undergraduate @ Peking University<br/>
-        Generative Models · LLMs · RL · Embodied AI
-      </div>
-
-      <div class="sidebar-meta">
-        <div><span class="icon">📍</span>Beijing, China</div>
-        <div>
-          <span class="icon">✉️</span>
-          <a href="mailto:2300011094@stu.pku.edu.cn">2300011094@stu.pku.edu.cn</a>
-        </div>
-      </div>
-
-      <div class="sidebar-links">
-        <div>🔗 <a href="https://github.com/Sparkle-PKU" target="_blank" rel="noreferrer">GitHub</a></div>
-        <div>📄 <a href="CV_Eng.pdf" target="_blank" rel="noreferrer">CV (PDF)</a></div>
-      </div>
-
-      <div class="sidebar-tags">
-        <span class="tag">Python</span>
-        <span class="tag">PyTorch</span>
-        <span class="tag">C/C++</span>
-        <span class="tag">CUDA</span>
-      </div>
-    </aside>
-
-    <!-- 右侧内容 -->
-    <div class="content-wrapper">
-      <!-- 站点标题 + 导航（点击切换“页面”） -->
-      <div class="site-header">
+  <!-- 顶部导航（只用前端切换，不需要 Jekyll） -->
+  <div class="masthead">
+    <div class="masthead__inner-wrap">
+      <div class="masthead__menu">
         <div>
           <div class="site-title">Bairui's ML World</div>
-          <div class="site-subtitle">
-            Generative models · LLMs · RL · Embodied intelligence
-          </div>
+          <div class="site-subtitle">Generative Models · LLMs · RL · Embodied AI</div>
         </div>
-        <nav class="nav">
+        <nav class="nav-links">
           <a href="#home" data-page-link="home" class="active">Home</a>
           <a href="#research" data-page-link="research">Research</a>
           <a href="#projects" data-page-link="projects">Projects</a>
@@ -376,237 +390,308 @@
           <a href="#misc" data-page-link="misc">Awards & Misc</a>
         </nav>
       </div>
-
-      <!-- Home 页面 -->
-      <div class="page-view active" data-page="home">
-        <h2>About</h2>
-        <p>
-          I am a B.S. candidate in Theoretical and Applied Mechanics (Computational Science and Engineering track)
-          at the College of Engineering and a B.S. candidate in Computer Science at the School of EECS,
-          Peking University. My current GPA is 3.67/4.00 (with CS major GPA 3.75/4.00).
-        </p>
-        <p>
-          I enjoy thinking about how to build <em>general-purpose intelligent systems</em>:
-          from token-level generative models (e.g., LLMs and diffusion models) to
-          decision-making and interaction in the physical world (reinforcement learning
-          and embodied agents).
-        </p>
-        <p>
-          I am currently looking for opportunities for <strong>research internships / summer research</strong>
-          and, in the longer term, graduate studies in machine learning.
-        </p>
-
-        <div class="pill-list">
-          <div class="pill">Diffusion / Generative Models</div>
-          <div class="pill">Large Language Models</div>
-          <div class="pill">Reinforcement Learning</div>
-          <div class="pill">Embodied Intelligence</div>
-          <div class="pill">Computer Vision</div>
-        </div>
-
-        <h2>Research Interests</h2>
-        <p>Broadly, I am interested in:</p>
-        <ul>
-          <li>
-            <strong>Generative models & LLMs</strong> — training and sampling on discrete spaces,
-            controllable generation, length and structure control, and improving
-            the faithfulness and efficiency of large language models.
-          </li>
-          <li>
-            <strong>Reinforcement learning</strong> — RL for long-horizon reasoning and planning,
-            RL from human feedback, and combining RL with generative models.
-          </li>
-          <li>
-            <strong>Embodied intelligence</strong> — language-conditioned control, agents that can
-            act in the physical world or simulators, and connecting perception, reasoning,
-            and action.
-          </li>
-        </ul>
-        <p>
-          I am happy to explore problems at the intersection of these areas, such as
-          RL-finetuned LLMs, diffusion-based sequence models, and embodied agents
-          driven by language and vision.
-        </p>
-      </div>
-
-      <!-- Research 页面 -->
-      <div class="page-view" data-page="research">
-        <h2>Research</h2>
-        <div>
-          <div class="item-header">
-            <span class="item-title">Diffusion LLM with Flexible-Length Generation</span>
-            <span class="item-meta">Aug. 2025 – present · with Dr. Yitao Liang, Peking University</span>
-          </div>
-          <p>
-            We study how fixed-length generation in diffusion-based large language models
-            can degrade generation quality and fail to match real-world requirements where
-            sequence length is inherently variable. I worked on implementing experimental
-            code, running controlled studies, and analyzing the causes of low-quality decoding
-            (such as non-canonical token encodings) under different length-control strategies.
-          </p>
-          <p>
-            This project has given me a deeper understanding of diffusion models on discrete
-            spaces and token-level probabilistic modeling for diffusion LLMs. A manuscript
-            based on this work is in preparation and planned to be submitted to
-            <strong>ICML 2026</strong>.
-          </p>
-        </div>
-
-        <!-- 以后有论文可以单独加 Publications 子区块 -->
-        <!--
-        <h3>Publications</h3>
-        <ul>
-          <li>To be updated after submission.</li>
-        </ul>
-        -->
-      </div>
-
-      <!-- Projects 页面 -->
-      <div class="page-view" data-page="projects">
-        <h2>Selected Projects</h2>
-
-        <div>
-          <div class="item-header">
-            <span class="item-title">CUDA-Accelerated Neural Network Framework with Autograd</span>
-            <span class="item-meta">Course project · Programming in AI, 2025</span>
-          </div>
-          <p>
-            Implemented a small neural network framework from scratch, trained on MNIST using
-            PyTorch as a reference. I implemented core components including <em>Tensor</em>,
-            fully connected and convolutional layers, softmax and cross-entropy loss in CUDA,
-            and built an autograd engine that supports diverse computation graphs.
-          </p>
-          <p>
-            I also implemented an SGD optimizer and used <code>pybind11</code> to expose CUDA/C++
-            kernels to Python, enabling parallelized training and evaluation.
-          </p>
-          <!-- 之后如果开源可以放链接 -->
-          <!-- <p>[<a href="#" target="_blank">code</a>]</p> -->
-        </div>
-      </div>
-
-      <!-- Notes 页面 -->
-      <div class="page-view" data-page="notes">
-        <h2>Notes</h2>
-        <p>
-          I keep lightweight notes while learning topics such as diffusion models, RL, and
-          large language models. Some of them are (or will be) made public here.
-        </p>
-
-        <ul class="notes-list">
-          <!-- TODO: 把下面这些示例替换成你真实的笔记链接 -->
-          <li>
-            <div class="notes-title">
-              <a href="#" target="_blank" rel="noreferrer">Notes on Diffusion Models and CTMC Formulations</a>
-            </div>
-            <div class="notes-meta">
-              2025 · diffusion models, discrete spaces
-              <span class="notes-tag">generative models</span>
-            </div>
-          </li>
-          <li>
-            <div class="notes-title">
-              <a href="#" target="_blank" rel="noreferrer">Reinforcement Learning Basics from "RL: An Introduction"</a>
-            </div>
-            <div class="notes-meta">
-              2025 · value-based methods, policy gradients
-              <span class="notes-tag">RL</span>
-            </div>
-          </li>
-          <li>
-            <div class="notes-title">
-              <a href="#" target="_blank" rel="noreferrer">Reading Notes on LLM Training and Alignment</a>
-            </div>
-            <div class="notes-meta">
-              2025 · pretraining, finetuning, RLHF
-              <span class="notes-tag">LLM</span>
-            </div>
-          </li>
-        </ul>
-
-        <p style="font-size: 12px; color:#777; margin-top:10px;">
-          (These are placeholders for now. I will gradually upload and organize my notes.)
-        </p>
-      </div>
-
-      <!-- Misc 页面 -->
-      <div class="page-view" data-page="misc">
-        <h2>Awards & Misc</h2>
-        <ul>
-          <li>
-            <strong>PKUCPC 2025</strong> – Third Prize, Peking University Collegiate Programming Contest.
-          </li>
-          <li>
-            <strong>CMC</strong> – Provincial Third Prize in the Chinese Mathematics Competitions
-            (group A, non-mathematics major).
-          </li>
-          <li>
-            <strong>IMMC 2019 China</strong> – Meritorious Winner, International Mathematical Modeling Challenge.
-          </li>
-        </ul>
-        <p>
-          I have also been active in student organizations at the College of Engineering,
-          serving in the Arts and Sports Department and later as its head. Outside of study,
-          I enjoy programming contests, math problems, and exploring systems and AI papers.
-        </p>
-      </div>
     </div>
   </div>
 
-  <footer>
+  <div id="main" role="main">
+    <!-- 左侧侧栏，参考 Alan 的布局 -->
+    <div class="sidebar sticky">
+      <div class="sidebar-card" itemscope itemtype="http://schema.org/Person">
+        <div class="author__avatar">
+          <!-- 换成你自己的头像链接 -->
+          <img src="https://avatars.githubusercontent.com/u/0?v=4" alt="Bairui Li">
+        </div>
+        <div class="author__content">
+          <h3 class="author__name">Bairui Li</h3>
+          <p class="author__bio">
+            Undergraduate @ Peking University
+          </p>
+        </div>
+        <div class="author__info">
+          <div>📍 Beijing, China</div>
+          <div>🏫 Peking University</div>
+        </div>
+        <ul class="author__links">
+          <li>
+            ✉️ <a href="mailto:2300011094@stu.pku.edu.cn">2300011094@stu.pku.edu.cn</a>
+          </li>
+          <li>
+            🐙 <a href="https://github.com/Sparkle-PKU" target="_blank" rel="noreferrer">GitHub</a>
+          </li>
+          <li>
+            📄 <a href="CV_Eng.pdf" target="_blank" rel="noreferrer">CV (PDF)</a>
+          </li>
+        </ul>
+        <div class="author__tags">
+          <span class="tag">Python</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">C/C++</span>
+          <span class="tag">CUDA</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右侧内容：一次只显示一个“页面” -->
+    <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+      <div class="page__inner-wrap">
+        <header>
+          <h1 class="page__title">Bairui’s Homepage</h1>
+          <div class="page__subtitle">
+            Click the navigation above or the buttons below to view each part.
+          </div>
+        </header>
+
+        <section class="page__content">
+          <!-- Home / About -->
+          <div class="page-view active" data-page="home">
+            <h2>About</h2>
+            <p>
+              I am a B.S. candidate in Theoretical and Applied Mechanics (Computational Science and Engineering track)
+              at the College of Engineering and a B.S. candidate in Computer Science at the School of EECS,
+              Peking University. My current GPA is 3.67/4.00 (CS major GPA 3.75/4.00).
+            </p>
+            <p>
+              I enjoy thinking about how to build <em>general-purpose intelligent systems</em>:
+              from token-level generative models (e.g., LLMs and diffusion models) to
+              decision-making and interaction in the physical world (reinforcement learning
+              and embodied agents).
+            </p>
+            <p>
+              I am currently looking for opportunities for <strong>research internships / summer research</strong>
+              and, in the longer term, graduate studies in machine learning.
+            </p>
+
+            <div class="pill-list">
+              <div class="pill">Diffusion / Generative Models</div>
+              <div class="pill">Large Language Models</div>
+              <div class="pill">Reinforcement Learning</div>
+              <div class="pill">Embodied Intelligence</div>
+              <div class="pill">Computer Vision</div>
+            </div>
+
+            <h2>Research Interests</h2>
+            <p>Broadly, I am interested in:</p>
+            <ul>
+              <li>
+                <strong>Generative models & LLMs</strong> — training and sampling on discrete spaces,
+                controllable generation, length and structure control, and improving
+                the faithfulness and efficiency of large language models.
+              </li>
+              <li>
+                <strong>Reinforcement learning</strong> — RL for long-horizon reasoning and planning,
+                RL from human feedback, and combining RL with generative models.
+              </li>
+              <li>
+                <strong>Embodied intelligence</strong> — language-conditioned control, agents that can
+                act in the physical world or simulators, and connecting perception, reasoning,
+                and action.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Research -->
+          <div class="page-view" data-page="research">
+            <h2>Research</h2>
+            <div>
+              <div class="item-header">
+                <span class="item-title">Diffusion LLM with Flexible-Length Generation</span>
+                <span class="item-meta">Aug. 2025 – present · with Dr. Yitao Liang, Peking University</span>
+              </div>
+              <p>
+                We study how fixed-length generation in diffusion-based large language models
+                can degrade generation quality and fail to match real-world requirements where
+                sequence length is inherently variable. I worked on implementing experimental
+                code, running controlled studies, and analyzing the causes of low-quality decoding
+                (such as non-canonical token encodings) under different length-control strategies.
+              </p>
+              <p>
+                This project has given me a deeper understanding of diffusion models on discrete
+                spaces and token-level probabilistic modeling for diffusion LLMs. A manuscript
+                based on this work is in preparation and planned to be submitted to
+                <strong>ICML 2026</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Projects -->
+          <div class="page-view" data-page="projects">
+            <h2>Selected Projects</h2>
+            <div>
+              <div class="item-header">
+                <span class="item-title">CUDA-Accelerated Neural Network Framework with Autograd</span>
+                <span class="item-meta">Course project · Programming in AI, 2025</span>
+              </div>
+              <p>
+                Implemented a small neural network framework from scratch, trained on MNIST using
+                PyTorch as a reference. I implemented core components including <em>Tensor</em>,
+                fully connected and convolutional layers, softmax and cross-entropy loss in CUDA,
+                and built an autograd engine that supports diverse computation graphs.
+              </p>
+              <p>
+                I also implemented an SGD optimizer and used <code>pybind11</code> to expose CUDA/C++
+                kernels to Python, enabling parallelized training and evaluation.
+              </p>
+            </div>
+
+            <div>
+              <div class="item-header">
+                <span class="item-title">Computer Vision Labs and 3D Understanding</span>
+                <span class="item-meta">Course labs · Introduction to Computer Vision, 2025</span>
+              </div>
+              <p>
+                Implemented classic feature and edge detection pipelines including Harris Corner
+                Detector and Canny Edge Detector. Built a CNN from scratch with NumPy
+                implementations of convolution, batch normalization, and cross-entropy loss,
+                and trained it on CIFAR-10.
+              </p>
+              <p>
+                For 3D understanding, I sampled point clouds with uniform and Farthest Point Sampling,
+                performed camera calibration via linear algebra formulations, and experimented with
+                PointNet, Mask R-CNN, and RNNs for 3D perception and sequence modeling tasks.
+              </p>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="page-view" data-page="notes">
+            <h2>Notes</h2>
+            <p>
+              I keep lightweight notes while learning topics such as diffusion models, RL, and
+              large language models. Some of them are (or will be) made public here.
+            </p>
+
+            <ul class="notes-list">
+              <li>
+                <div class="notes-title">
+                  <a href="#" target="_blank" rel="noreferrer">Notes on Diffusion Models and CTMC Formulations</a>
+                </div>
+                <div class="notes-meta">
+                  2025 · diffusion models, discrete spaces
+                  <span class="notes-tag">generative models</span>
+                </div>
+              </li>
+              <li>
+                <div class="notes-title">
+                  <a href="#" target="_blank" rel="noreferrer">Reinforcement Learning Basics from "RL: An Introduction"</a>
+                </div>
+                <div class="notes-meta">
+                  2025 · value-based methods, policy gradients
+                  <span class="notes-tag">RL</span>
+                </div>
+              </li>
+              <li>
+                <div class="notes-title">
+                  <a href="#" target="_blank" rel="noreferrer">Reading Notes on LLM Training and Alignment</a>
+                </div>
+                <div class="notes-meta">
+                  2025 · pretraining, finetuning, RLHF
+                  <span class="notes-tag">LLM</span>
+                </div>
+              </li>
+            </ul>
+
+            <p style="font-size: 12px; color:#777; margin-top:10px;">
+              (These are placeholders for now. I will gradually upload and organize my notes.)
+            </p>
+          </div>
+
+          <!-- Awards & Misc -->
+          <div class="page-view" data-page="misc">
+            <h2>Awards & Misc</h2>
+            <ul>
+              <li>
+                <strong>PKUCPC 2025</strong> – Third Prize, Peking University Collegiate Programming Contest.
+              </li>
+              <li>
+                <strong>CMC</strong> – Provincial Third Prize in the Chinese Mathematics Competitions
+                (group A, non-mathematics major).
+              </li>
+              <li>
+                <strong>IMMC 2019 China</strong> – Meritorious Winner, International Mathematical Modeling Challenge.
+              </li>
+            </ul>
+            <p>
+              I have also been active in student organizations at the College of Engineering,
+              serving in the Arts and Sports Department and later as its head. Outside of study,
+              I enjoy programming contests, math problems, and exploring systems and AI papers.
+            </p>
+          </div>
+        </section>
+
+        <!-- 上一页 / 下一页：必须点击才能看到后面的部分 -->
+        <div class="pager">
+          <button id="prevBtn">← Previous</button>
+          <span id="pageIndicator"></span>
+          <button id="nextBtn">Next →</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer class="page__footer">
     © <span id="year"></span> Bairui Li. Last updated in 2025.
   </footer>
 
   <script>
-    // 自动更新年份
+    // 自动年份
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 简单“路由”：点击导航切换不同 page-view
-    const pages = document.querySelectorAll('.page-view');
+    const pages = ['home', 'research', 'projects', 'notes', 'misc'];
+    const views = document.querySelectorAll('.page-view');
     const navLinks = document.querySelectorAll('[data-page-link]');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const pageIndicator = document.getElementById('pageIndicator');
 
-    function showPage(pageName) {
-      let found = false;
+    let currentIndex = 0;
 
-      pages.forEach(p => {
-        if (p.getAttribute('data-page') === pageName) {
-          p.classList.add('active');
-          found = true;
-        } else {
-          p.classList.remove('active');
-        }
+    function showPageByIndex(idx) {
+      if (idx < 0 || idx >= pages.length) return;
+      currentIndex = idx;
+      const current = pages[currentIndex];
+
+      views.forEach(v => {
+        v.classList.toggle('active', v.getAttribute('data-page') === current);
       });
 
-      navLinks.forEach(link => {
-        if (link.getAttribute('data-page-link') === pageName) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('data-page-link') === current);
       });
 
-      if (found) {
-        // 修改 URL hash，但不滚动到锚点
-        history.replaceState(null, '', '#' + pageName);
-        window.scrollTo({ top: 0, behavior: 'instant' });
-      }
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === pages.length - 1;
+
+      pageIndicator.textContent = `Section ${currentIndex + 1} / ${pages.length}`;
+
+      history.replaceState(null, '', '#' + current);
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
-    // 处理导航点击
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
+    // 顶部导航点击
+    navLinks.forEach(a => {
+      a.addEventListener('click', (e) => {
         e.preventDefault();
-        const pageName = link.getAttribute('data-page-link');
-        showPage(pageName);
+        const pageName = a.getAttribute('data-page-link');
+        const idx = pages.indexOf(pageName);
+        if (idx >= 0) showPageByIndex(idx);
       });
     });
 
-    // 根据初始 hash 打开对应“页面”
+    // 上一页 / 下一页 按钮
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) showPageByIndex(currentIndex - 1);
+    });
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < pages.length - 1) showPageByIndex(currentIndex + 1);
+    });
+
+    // 根据 hash 初始化
     const initialHash = window.location.hash.replace('#', '');
-    if (initialHash) {
-      showPage(initialHash);
+    const initIdx = pages.indexOf(initialHash);
+    if (initIdx >= 0) {
+      showPageByIndex(initIdx);
     } else {
-      showPage('home');
+      showPageByIndex(0);
     }
   </script>
 </body>
