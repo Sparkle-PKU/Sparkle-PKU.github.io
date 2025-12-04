@@ -24,6 +24,11 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -32,6 +37,10 @@
                    "PingFang SC", "Microsoft YaHei", sans-serif;
       background: linear-gradient(180deg, #f4f9ff 0%, #e6f0ff 100%);
       color: var(--fg);
+      display: flex;
+      flex-direction: column;   /* 让 footer 贴底 */
+      font-size: 16px;          /* 整体正文字体变大 */
+      line-height: 1.6;
     }
 
     a {
@@ -67,7 +76,7 @@
 
     .site-title {
       font-weight: 600;
-      font-size: 18px;
+      font-size: 19px;
       color: var(--nav-text);
     }
 
@@ -90,7 +99,7 @@
       color: var(--nav-text);
       text-decoration: none;
       white-space: nowrap;
-      background: transparent;      /* 看起来“无色” */
+      background: transparent;
     }
 
     .nav-links a:hover {
@@ -99,7 +108,7 @@
     }
 
     .nav-links a.active {
-      background: #ebebeb;          /* 浅灰高亮 */
+      background: #ebebeb;
       color: var(--nav-active);
       border-color: #d8d8d8;
     }
@@ -111,6 +120,7 @@
       display: flex;
       gap: 24px;
       align-items: flex-start;
+      flex: 1;                  /* 撑满剩余高度，footer 贴底 */
     }
 
     .sidebar {
@@ -121,7 +131,7 @@
     }
 
     .sidebar-card {
-      background: var(--card-bg);    /* 浅蓝 */
+      background: var(--card-bg);
       border-radius: 16px;
       padding: 16px 14px 14px;
       border: 1px solid rgba(0,0,0,0.04);
@@ -159,7 +169,7 @@
     }
 
     .author__info {
-      font-size: 13px;
+      font-size: 14px;
       color: #444;
       margin-bottom: 8px;
     }
@@ -200,7 +210,7 @@
     }
 
     .page__inner-wrap {
-      background: var(--card-bg);    /* 主体卡片浅蓝 */
+      background: var(--card-bg);
       border-radius: 16px;
       padding: 18px 20px 18px;
       border: 1px solid rgba(0,0,0,0.04);
@@ -210,7 +220,7 @@
 
     .page__title {
       margin: 0 0 4px;
-      font-size: 24px;
+      font-size: 26px;
     }
 
     .page__subtitle {
@@ -220,13 +230,13 @@
     }
 
     .page__content p {
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 16px;          /* 正文更大 */
+      line-height: 1.7;
       margin: 6px 0;
     }
 
     .page__content ul {
-      font-size: 14px;
+      font-size: 16px;
       margin: 6px 0 6px;
       padding-left: 20px;
     }
@@ -236,7 +246,7 @@
     }
 
     h2 {
-      font-size: 18px;
+      font-size: 20px;
       margin-top: 10px;
       display: inline-flex;
       align-items: center;
@@ -265,7 +275,7 @@
     }
 
     .item-meta {
-      font-size: 12px;
+      font-size: 12px;   /* 小字说明保持小一点 */
       color: #777;
     }
 
@@ -287,7 +297,7 @@
     .notes-list {
       list-style: none;
       padding-left: 0;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .notes-list li {
@@ -489,9 +499,9 @@
               <div class="item-header">
                 <span class="item-title">Diffusion LLM with Flexible-Length Generation</span>
                 <span class="item-meta">
-                Aug. 2025 – present · with 
+                  Aug. 2025 – present · with
                   <a href="https://www.ai.pku.edu.cn/info/1158/1978.htm" target="_blank" rel="noreferrer">
-                  Dr. Yitao Liang
+                    Dr. Yitao Liang
                   </a>, Peking University
                 </span>
               </div>
@@ -536,7 +546,7 @@
             </div>
           </div>
 
-                    <!-- Notes -->
+          <!-- Notes -->
           <div class="page-view" data-page="notes">
             <h2>Notes</h2>
             <p>
@@ -597,7 +607,6 @@
             </p>
           </div>
 
-
           <!-- Awards & Misc -->
           <div class="page-view" data-page="misc">
             <h2>Awards & Misc</h2>
@@ -621,7 +630,6 @@
           </div>
         </section>
 
-        <!-- 上一页 / 下一页：必须点击才能看到后面的部分 -->
         <div class="pager">
           <button id="prevBtn">← Previous</button>
           <span id="pageIndicator"></span>
