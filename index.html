@@ -24,32 +24,48 @@
                    "PingFang SC", "Microsoft YaHei", sans-serif;
       margin: 0;
       padding: 0;
-      background: radial-gradient(circle at top, #f0f4ff, #f5f5f5 45%, #f5f5f5);
+      background: #f5f5f5;
       color: var(--fg);
     }
 
-    .page {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
+    a {
+      color: var(--link);
+      text-decoration: none;
     }
 
-    header {
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    /* 左侧侧栏 */
+    .sidebar {
+      flex: 0 0 260px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 18px 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.04);
+      position: sticky;
+      top: 16px;
     }
 
     .avatar {
-      width: 92px;
-      height: 92px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      background: #ddd;
       overflow: hidden;
-      flex-shrink: 0;
+      margin: 0 auto 10px;
       border: 2px solid rgba(0,0,0,0.06);
+      background: #ddd;
     }
 
     .avatar img {
@@ -59,92 +75,132 @@
       display: block;
     }
 
-    .headline h1 {
-      margin: 0;
-      font-size: 28px;
-      letter-spacing: 0.02em;
-    }
-
-    .headline .subtitle {
+    .sidebar-name {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
       margin-top: 4px;
-      color: #555;
-      font-size: 14px;
     }
 
-    .meta {
-      margin-top: 8px;
-      font-size: 14px;
+    .sidebar-title {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    .sidebar-meta {
+      margin-top: 10px;
+      font-size: 13px;
       color: #444;
     }
 
-    .meta a {
-      color: var(--link);
-      text-decoration: none;
+    .sidebar-meta div {
+      margin-bottom: 4px;
     }
 
-    .meta a:hover {
-      text-decoration: underline;
+    .sidebar-meta span.icon {
+      margin-right: 4px;
     }
 
-    .tagline {
-      margin-top: 8px;
+    .sidebar-links {
+      margin-top: 10px;
       font-size: 13px;
+    }
+
+    .sidebar-links div {
+      margin-bottom: 4px;
+    }
+
+    .sidebar-tags {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #fafafa;
+    }
+
+    /* 右侧主内容区域 */
+    .content-wrapper {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    /* 顶部站点标题 + 导航 */
+    .site-header {
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.04);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .site-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .site-subtitle {
+      font-size: 12px;
       color: #666;
     }
 
-    nav {
-      margin-bottom: 16px;
-      position: sticky;
-      top: 0;
-      background: linear-gradient(to bottom, rgba(245,245,245,0.98), rgba(245,245,245,0.9));
-      backdrop-filter: blur(6px);
-      z-index: 10;
-    }
-
-    nav .nav-inner {
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,0.03);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-      padding: 6px 10px;
+    .nav {
       display: inline-flex;
       flex-wrap: wrap;
       gap: 6px;
-      background: #fff;
     }
 
-    nav a {
+    .nav a {
       font-size: 13px;
-      text-decoration: none;
       padding: 4px 10px;
       border-radius: 999px;
       color: #444;
       border: 1px solid transparent;
+      text-decoration: none;
     }
 
-    nav a:hover {
+    .nav a:hover {
       border-color: rgba(0,0,0,0.08);
       background: #f5f5f5;
     }
 
-    nav a.active {
+    .nav a.active {
       background: #111;
       color: #fff;
     }
 
-    main {
-      margin-top: 12px;
-    }
-
-    section {
+    /* “页面”容器：点击导航时切换显示 */
+    .page-view {
+      display: none;
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 18px 18px 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,0,0,0.03);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.04);
     }
 
-    section h2 {
+    .page-view.active {
+      display: block;
+    }
+
+    .page-view h2 {
       margin-top: 0;
       font-size: 18px;
       display: inline-flex;
@@ -152,7 +208,7 @@
       gap: 6px;
     }
 
-    section h2::before {
+    .page-view h2::before {
       content: "";
       width: 4px;
       height: 16px;
@@ -165,16 +221,6 @@
       margin: 6px 0;
       line-height: 1.5;
       font-size: 14px;
-    }
-
-    .inline-tag {
-      display: inline-block;
-      font-size: 12px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #f2f2f2;
-      margin-right: 4px;
-      margin-top: 4px;
     }
 
     ul {
@@ -208,7 +254,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin: 4px 0 6px;
+      margin: 6px 0 6px;
     }
 
     .pill {
@@ -246,74 +292,98 @@
     }
 
     footer {
-      margin-top: 10px;
+      max-width: 1080px;
+      margin: 0 auto;
       text-align: center;
       color: #888;
       font-size: 12px;
-      padding: 12px 0 32px;
+      padding: 6px 0 24px;
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        flex-direction: column;
+      }
+      .sidebar {
+        position: static;
+      }
     }
 
     @media (max-width: 640px) {
-      header {
+      .site-header {
         align-items: flex-start;
       }
-      .headline h1 {
-        font-size: 22px;
+      .site-title {
+        font-size: 18px;
       }
-      .headline .subtitle {
-        font-size: 13px;
-      }
-      nav .nav-inner {
+      .nav {
         width: 100%;
-        justify-content: space-between;
+        justify-content: flex-start;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <header>
+    <!-- 左侧侧栏 -->
+    <aside class="sidebar">
       <div class="avatar">
-        <!-- TODO: 换成你真实头像链接，例如 GitHub 头像 -->
+        <!-- 换成你真实头像链接 -->
         <img src="https://avatars.githubusercontent.com/u/0?v=4" alt="avatar">
       </div>
-      <div class="headline">
-        <h1>Bairui Li</h1>
-        <div class="subtitle">
-          Undergraduate @ Peking University · Generative Models · LLMs · RL · Embodied AI
-        </div>
-        <div class="meta">
-          <!-- TODO: 修改邮箱 / GitHub / 位置 -->
-          Beijing, China ·
-          Email: <a href="mailto:2300011094@stu.pku.edu.cn">2300011094@stu.pku.edu.cn</a> ·
-          <a href="https://github.com/Sparkle-PKU" target="_blank" rel="noreferrer">GitHub</a> ·
-          <a href="CV_Eng.pdf" target="_blank" rel="noreferrer">CV (PDF)</a>
-        </div>
-        <div class="tagline">
-          I am an undergraduate student broadly interested in generative models, large language models,
-          reinforcement learning, and embodied intelligence.
+      <div class="sidebar-name">Bairui Li</div>
+      <div class="sidebar-title">
+        Undergraduate @ Peking University<br/>
+        Generative Models · LLMs · RL · Embodied AI
+      </div>
+
+      <div class="sidebar-meta">
+        <div><span class="icon">📍</span>Beijing, China</div>
+        <div>
+          <span class="icon">✉️</span>
+          <a href="mailto:2300011094@stu.pku.edu.cn">2300011094@stu.pku.edu.cn</a>
         </div>
       </div>
-    </header>
 
-    <nav>
-      <div class="nav-inner">
-        <a href="#about" class="active">About</a>
-        <a href="#interests">Research Interests</a>
-        <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
-        <a href="#notes">Notes</a>
-        <a href="#misc">Awards & Misc</a>
+      <div class="sidebar-links">
+        <div>🔗 <a href="https://github.com/Sparkle-PKU" target="_blank" rel="noreferrer">GitHub</a></div>
+        <div>📄 <a href="CV_Eng.pdf" target="_blank" rel="noreferrer">CV (PDF)</a></div>
       </div>
-    </nav>
 
-    <main>
-      <section id="about">
+      <div class="sidebar-tags">
+        <span class="tag">Python</span>
+        <span class="tag">PyTorch</span>
+        <span class="tag">C/C++</span>
+        <span class="tag">CUDA</span>
+      </div>
+    </aside>
+
+    <!-- 右侧内容 -->
+    <div class="content-wrapper">
+      <!-- 站点标题 + 导航（点击切换“页面”） -->
+      <div class="site-header">
+        <div>
+          <div class="site-title">Bairui's ML World</div>
+          <div class="site-subtitle">
+            Generative models · LLMs · RL · Embodied intelligence
+          </div>
+        </div>
+        <nav class="nav">
+          <a href="#home" data-page-link="home" class="active">Home</a>
+          <a href="#research" data-page-link="research">Research</a>
+          <a href="#projects" data-page-link="projects">Projects</a>
+          <a href="#notes" data-page-link="notes">Notes</a>
+          <a href="#misc" data-page-link="misc">Awards & Misc</a>
+        </nav>
+      </div>
+
+      <!-- Home 页面 -->
+      <div class="page-view active" data-page="home">
         <h2>About</h2>
         <p>
           I am a B.S. candidate in Theoretical and Applied Mechanics (Computational Science and Engineering track)
           at the College of Engineering and a B.S. candidate in Computer Science at the School of EECS,
-          Peking University. My current GPA is 3.67/4.00 (CS major GPA 3.75/4.00).
+          Peking University. My current GPA is 3.67/4.00 (with CS major GPA 3.75/4.00).
         </p>
         <p>
           I enjoy thinking about how to build <em>general-purpose intelligent systems</em>:
@@ -325,16 +395,15 @@
           I am currently looking for opportunities for <strong>research internships / summer research</strong>
           and, in the longer term, graduate studies in machine learning.
         </p>
+
         <div class="pill-list">
-          <div class="pill">Python · PyTorch · C/C++ · CUDA</div>
           <div class="pill">Diffusion / Generative Models</div>
           <div class="pill">Large Language Models</div>
           <div class="pill">Reinforcement Learning</div>
+          <div class="pill">Embodied Intelligence</div>
           <div class="pill">Computer Vision</div>
         </div>
-      </section>
 
-      <section id="interests">
         <h2>Research Interests</h2>
         <p>Broadly, I am interested in:</p>
         <ul>
@@ -358,11 +427,11 @@
           RL-finetuned LLMs, diffusion-based sequence models, and embodied agents
           driven by language and vision.
         </p>
-      </section>
+      </div>
 
-      <section id="research">
+      <!-- Research 页面 -->
+      <div class="page-view" data-page="research">
         <h2>Research</h2>
-
         <div>
           <div class="item-header">
             <span class="item-title">Diffusion LLM with Flexible-Length Generation</span>
@@ -383,16 +452,17 @@
           </p>
         </div>
 
-        <!-- 如果之后有论文，可以在这里加 Publications 子标题 -->
+        <!-- 以后有论文可以单独加 Publications 子区块 -->
         <!--
         <h3>Publications</h3>
         <ul>
           <li>To be updated after submission.</li>
         </ul>
         -->
-      </section>
+      </div>
 
-      <section id="projects">
+      <!-- Projects 页面 -->
+      <div class="page-view" data-page="projects">
         <h2>Selected Projects</h2>
 
         <div>
@@ -410,30 +480,13 @@
             I also implemented an SGD optimizer and used <code>pybind11</code> to expose CUDA/C++
             kernels to Python, enabling parallelized training and evaluation.
           </p>
-          <!-- TODO: 如果之后开源，可以填上链接 -->
+          <!-- 之后如果开源可以放链接 -->
           <!-- <p>[<a href="#" target="_blank">code</a>]</p> -->
         </div>
+      </div>
 
-        <div>
-          <div class="item-header">
-            <span class="item-title">Computer Vision Labs and 3D Understanding</span>
-            <span class="item-meta">Course labs · Introduction to Computer Vision, 2025</span>
-          </div>
-          <p>
-            Implemented classic feature and edge detection pipelines including Harris Corner
-            Detector and Canny Edge Detector. Built a CNN from scratch with NumPy
-            implementations of convolution, batch normalization, and cross-entropy loss,
-            and trained it on CIFAR-10.
-          </p>
-          <p>
-            For 3D understanding, I sampled point clouds with uniform and Farthest Point Sampling,
-            performed camera calibration via linear algebra formulations, and experimented with
-            PointNet, Mask R-CNN, and RNNs for 3D perception and sequence modeling tasks.
-          </p>
-        </div>
-      </section>
-
-      <section id="notes">
+      <!-- Notes 页面 -->
+      <div class="page-view" data-page="notes">
         <h2>Notes</h2>
         <p>
           I keep lightweight notes while learning topics such as diffusion models, RL, and
@@ -441,7 +494,7 @@
         </p>
 
         <ul class="notes-list">
-          <!-- TODO: 把下面这些示例替换成你真实的笔记链接（可以是 GitHub 仓库、Markdown 渲染页、Notion 等） -->
+          <!-- TODO: 把下面这些示例替换成你真实的笔记链接 -->
           <li>
             <div class="notes-title">
               <a href="#" target="_blank" rel="noreferrer">Notes on Diffusion Models and CTMC Formulations</a>
@@ -474,9 +527,10 @@
         <p style="font-size: 12px; color:#777; margin-top:10px;">
           (These are placeholders for now. I will gradually upload and organize my notes.)
         </p>
-      </section>
+      </div>
 
-      <section id="misc">
+      <!-- Misc 页面 -->
+      <div class="page-view" data-page="misc">
         <h2>Awards & Misc</h2>
         <ul>
           <li>
@@ -495,40 +549,65 @@
           serving in the Arts and Sports Department and later as its head. Outside of study,
           I enjoy programming contests, math problems, and exploring systems and AI papers.
         </p>
-      </section>
-    </main>
-
-    <footer>
-      © <span id="year"></span> Bairui Li. Last updated in 2025.
-    </footer>
+      </div>
+    </div>
   </div>
 
+  <footer>
+    © <span id="year"></span> Bairui Li. Last updated in 2025.
+  </footer>
+
   <script>
-    // 自动更新年份 + 简单导航高亮（基于滚动位置）
+    // 自动更新年份
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const sections = document.querySelectorAll("main section");
-    const navLinks = document.querySelectorAll("nav a");
+    // 简单“路由”：点击导航切换不同 page-view
+    const pages = document.querySelectorAll('.page-view');
+    const navLinks = document.querySelectorAll('[data-page-link]');
 
-    function onScroll() {
-      let current = "";
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 80 && rect.bottom >= 80) {
-          current = section.id;
+    function showPage(pageName) {
+      let found = false;
+
+      pages.forEach(p => {
+        if (p.getAttribute('data-page') === pageName) {
+          p.classList.add('active');
+          found = true;
+        } else {
+          p.classList.remove('active');
         }
       });
 
       navLinks.forEach(link => {
-        if (link.getAttribute("href") === "#" + current) {
-          link.classList.add("active");
+        if (link.getAttribute('data-page-link') === pageName) {
+          link.classList.add('active');
         } else {
-          link.classList.remove("active");
+          link.classList.remove('active');
         }
       });
+
+      if (found) {
+        // 修改 URL hash，但不滚动到锚点
+        history.replaceState(null, '', '#' + pageName);
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
     }
 
-    document.addEventListener("scroll", onScroll);
+    // 处理导航点击
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pageName = link.getAttribute('data-page-link');
+        showPage(pageName);
+      });
+    });
+
+    // 根据初始 hash 打开对应“页面”
+    const initialHash = window.location.hash.replace('#', '');
+    if (initialHash) {
+      showPage(initialHash);
+    } else {
+      showPage('home');
+    }
   </script>
 </body>
 </html>
