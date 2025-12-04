@@ -11,7 +11,7 @@
     :root {
       --bg: #f5f5f5;
       --fg: #111;
-      --card-bg: #ffffff;
+      --card-bg: #f4f9ff;           /* 主体卡片改成浅蓝色 */
       --border-soft: #e5e5e5;
       --link: #0070f3;
       --nav-bg: #ffffff;
@@ -44,7 +44,7 @@
     }
 
     .masthead {
-      background: var(--nav-active);
+      background: var(--nav-bg);      /* 顶部菜单恢复为白色背景 */
       border-bottom: 1px solid var(--nav-border);
       box-shadow: 0 2px 4px rgba(0,0,0,0.03);
       position: sticky;
@@ -90,6 +90,7 @@
       color: var(--nav-text);
       text-decoration: none;
       white-space: nowrap;
+      background: transparent;      /* “正常无色” */
     }
 
     .nav-links a:hover {
@@ -98,8 +99,9 @@
     }
 
     .nav-links a.active {
-      background: var(--nav-active);
-      color: #fff;
+      background: #f3f3f3;          /* 变成浅灰高亮，不再是黑色块 */
+      color: var(--nav-active);
+      border-color: #e0e0e0;
     }
 
     #main {
@@ -119,7 +121,7 @@
     }
 
     .sidebar-card {
-      background: #fff;
+      background: var(--card-bg);    /* 侧边栏卡片也用浅蓝 */
       border-radius: 16px;
       padding: 16px 14px 14px;
       border: 1px solid rgba(0,0,0,0.04);
@@ -198,7 +200,7 @@
     }
 
     .page__inner-wrap {
-      background: var(--card-bg);
+      background: var(--card-bg);    /* 主体卡片浅蓝 */
       border-radius: 16px;
       padding: 18px 20px 18px;
       border: 1px solid rgba(0,0,0,0.04);
@@ -510,7 +512,11 @@
             <h2>Selected Projects</h2>
             <div>
               <div class="item-header">
-                <span class="item-title">CUDA-Accelerated Neural Network Framework with Autograd</span>
+                <span class="item-title">
+                  <a href="https://github.com/Sparkle-PKU/Mytorch" target="_blank" rel="noreferrer">
+                    CUDA-Accelerated Neural Network Framework with Autograd
+                  </a>
+                </span>
                 <span class="item-meta">Course project · Programming in AI, 2025</span>
               </div>
               <p>
@@ -530,8 +536,16 @@
           <div class="page-view" data-page="notes">
             <h2>Notes</h2>
             <p>
-              I keep lightweight notes while learning topics such as diffusion models, RL, and
-              large language models. Some of them are (or will be) made public here.
+              I keep lightweight notes not only for my own learning, but also to help classmates:
+              they include <strong>extracurricular notes</strong> on topics such as diffusion models, RL,
+              and large language models, as well as <strong>course materials and summaries</strong> that
+              may be useful for students taking related courses.
+            </p>
+            <p>
+              Some of these materials are (or will be) organized and shared on my GitHub:
+              <a href="https://github.com/Sparkle-PKU?tab=repositories" target="_blank" rel="noreferrer">
+                https://github.com/Sparkle-PKU?tab=repositories
+              </a>.
             </p>
 
             <ul class="notes-list">
@@ -565,7 +579,7 @@
             </ul>
 
             <p style="font-size: 12px; color:#777; margin-top:10px;">
-              (These are placeholders for now. I will gradually upload and organize my notes.)
+              (These are placeholders for now. I will gradually upload and organize my notes and course-related materials.)
             </p>
           </div>
 
