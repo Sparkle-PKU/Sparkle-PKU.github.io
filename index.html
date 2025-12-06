@@ -507,7 +507,7 @@
                 <span class="item-meta">
                   Aug. 2025 – present · with
                   <a href="https://www.ai.pku.edu.cn/info/1158/1978.htm" target="_blank" rel="noreferrer">
-                    Dr. Yitao Liang
+                    Prof. Yitao Liang
                   </a>, Peking University
                 </span>
               </div>
@@ -595,22 +595,12 @@
                 </a>
               </li>
               <li>
-                <a href="https://github.com/Sparkle-PKU/Mytorch"
-                   target="_blank" rel="noreferrer">
-                  Mytorch
-                </a>
-              </li>
-              <li>
                 <a href="https://github.com/Sparkle-PKU/Reinforcement-Learning-An-Introduction-Notes"
                    target="_blank" rel="noreferrer">
                   Reinforcement-Learning-An-Introduction-Notes
                 </a>
               </li>
             </ul>
-
-            <p style="font-size: 12px; color:#777; margin-top:10px;">
-              (I will gradually upload and organize more notes and course-related materials in these repositories.)
-            </p>
           </div>
 
           <!-- Awards & Misc -->
@@ -629,9 +619,10 @@
               </li>
             </ul>
             <p>
-              I have also been active in student organizations at the College of Engineering,
-              serving in the Arts and Sports Department and later as its head. Outside of study,
-              I enjoy programming contests, math problems, and exploring systems and AI papers.
+              I have also been active in student organizations at the College of Engineering, serving in the Arts and Sports Department and later as its head. 
+            </p>
+            <p>
+              Outside of academics, I enjoy traveling around the world and swimming. I'm also a fan of Detective Conan.
             </p>
           </div>
         </section>
@@ -650,7 +641,6 @@
   </footer>
 
   <script>
-    // 自动年份
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const pages = ['home', 'research', 'projects', 'notes', 'misc'];
@@ -684,7 +674,6 @@
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
-    // 顶部导航点击
     navLinks.forEach(a => {
       a.addEventListener('click', (e) => {
         e.preventDefault();
@@ -694,7 +683,6 @@
       });
     });
 
-    // 上一页 / 下一页 按钮
     prevBtn.addEventListener('click', () => {
       if (currentIndex > 0) showPageByIndex(currentIndex - 1);
     });
@@ -702,7 +690,6 @@
       if (currentIndex < pages.length - 1) showPageByIndex(currentIndex + 1);
     });
 
-    // 根据 hash 初始化
     const initialHash = window.location.hash.replace('#', '');
     const initIdx = pages.indexOf(initialHash);
     if (initIdx >= 0) {
